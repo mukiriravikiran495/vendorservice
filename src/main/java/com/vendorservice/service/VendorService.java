@@ -2,10 +2,14 @@ package com.vendorservice.service;
 
 import java.util.List;
 
-import com.vendorservice.domain.VendorBookingResponseDTO;
+import com.vendorservice.domain.VendorResponse;
+import com.vendorservice.exceptions.StatusHandler;
+
 
 public interface VendorService {
 
-	List<VendorBookingResponseDTO> getBookingByVendorId(long vendorId);
+	VendorResponse getVendorDetails(Long vendorId, VendorResponse response, StatusHandler statusHandler);
+
+	
 
 }

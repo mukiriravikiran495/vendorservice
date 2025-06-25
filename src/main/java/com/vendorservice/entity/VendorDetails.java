@@ -32,16 +32,6 @@ public class VendorDetails implements Serializable{
 	@JsonManagedReference
     private VendorAddress vendorAddress;
 	
-
-	@OneToMany(mappedBy = "vendorDetails", cascade = CascadeType.ALL)
-	@JsonIgnore
-    private List<MyBookings> bookings;
-	public List<MyBookings> getBookings() {
-		return bookings;
-	}
-	public void setBookings(List<MyBookings> bookings) {
-		this.bookings = bookings;
-	}
 	
 	public long getVendorId() {
 		return vendorId;
@@ -74,23 +64,7 @@ public class VendorDetails implements Serializable{
 		this.v_email = v_email;
 	}
 	
-	public VendorDetails(long vendorId, String v_firstName, String v_lastName, String v_mobile, String v_email,
-			VendorAddress vendorAddress, List<MyBookings> bookings) {
-		super();
-		this.vendorId = vendorId;
-		this.v_firstName = v_firstName;
-		this.v_lastName = v_lastName;
-		this.v_mobile = v_mobile;
-		this.v_email = v_email;
-		this.vendorAddress = vendorAddress;
-		this.bookings = bookings;
-	}
-	@Override
-	public String toString() {
-		return "VendorDetails [vendorId=" + vendorId + ", v_firstName=" + v_firstName + ", v_lastName=" + v_lastName
-				+ ", v_mobile=" + v_mobile + ", v_email=" + v_email + ", vendorAddress=" + vendorAddress + ", bookings="
-				+ bookings + "]";
-	}
+	
 	public VendorDetails() {
 		
 	}
