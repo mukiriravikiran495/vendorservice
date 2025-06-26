@@ -10,11 +10,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vendorservice.constants.AppConstants;
 import com.vendorservice.domain.TokenID;
+import com.vendorservice.domain.VendorEstimateRequest;
+import com.vendorservice.domain.VendorEstimateResponse;
 import com.vendorservice.domain.VendorResponse;
 import com.vendorservice.exceptions.InvalidRequestException;
 import com.vendorservice.exceptions.StatusHandler;
@@ -75,6 +79,17 @@ public class VendorServiceController {
 		ResponseEntity<VendorResponse> vendorResponse = new ResponseEntity<VendorResponse>(response, HttpStatus.OK);
 		logger.info("End : get vendor details controller : "+vendorId);
 		return vendorResponse;
+	}
+	
+	@PostMapping( value = "/vendor/vendorestimates")
+	public ResponseEntity<VendorEstimateResponse> getVendorEstimates( @RequestBody VendorEstimateRequest request) {
+		logger.info("Start : Get Vendor Estimates : "+request);
+		StatusHandler statusHandler = new StatusHandler();
+		VendorEstimateResponse vendorEstimatesResponse = new VendorEstimateResponse();
+		vendorEstimatesResponse = service.getvendorEstimates(request, vendorEstimatesResponse, statusHandler);
+		ResponseEntity<VendorEstimateResponse> response = new ResponseEntity<>(vendorEstimatesResponse, HttpStatus.OK);
+		logger.info("END : Get Vendor Estimates : ");
+		return response;
 	}
 
 }
